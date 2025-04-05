@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #ffffff);
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #004d40;
+        }
+        label, input, button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            font-size: 1rem;
+        }
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sleep Tracking</h1>
+        <label for="sleepTime">Sleeping Time:</label>
+        <input type="time" id="sleepTime">
+
+        <label for="wakeTime">Wake Up Time:</label>
+        <input type="time" id="wakeTime">
+
+        <button onclick="calculateSleepHours()">Calculate Sleep Hours</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateSleepHours() {
+            const sleepTime = document.getElementById("sleepTime").value;
+            const wakeTime = document.getElementById("wakeTime").value;
+
+            if (!sleepTime || !wakeTime) {
+                document.getElementById("result").textContent = "Please enter both sleep and wake times.";
+                return;
+            }
+
+            const [sleepHour, sleepMin] = sleepTime.split(":").map(Number);
+            const [wakeHour, wakeMin] = wakeTime.split(":").map(Number);
+
+            let sleepDate = new Date();
+            sleepDate.setHours(sleepHour, sleepMin);
+
+            let wakeDate = new Date();
+            wakeDate.setHours(wakeHour, wakeMin);
+
+            if (wakeDate <= sleepDate) {
+                wakeDate.setDate(wakeDate.getDate() + 1);
+            }
+
+            const diff = wakeDate - sleepDate;
+            const hours = Math.floor(diff / 1000 / 60 / 60);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+
+            document.getElementById("result").textContent = `You slept for ${hours} hours and ${minutes} minutes.`;
+        }
+    </script>
+</body>
+</html>

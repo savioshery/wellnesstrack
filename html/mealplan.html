@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Meal Plan</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background-color: rgba(0, 121, 107, 0.9);
+            color: white;
+            padding: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.01);
+        }
+
+        .meal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        strong {
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <header>Meal Plan</header>
+    <div class="container">
+        <h2>Hi <span id="userName"></span>, here's your personalized meal plan:</h2>
+        <img src="images/meal-default.jpg" alt="Meal Plan Image" class="meal-image">
+        <div id="mealContent"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name");
+        const age = parseInt(params.get("age"));
+        const gender = params.get("gender");
+        const weight = parseInt(params.get("weight"));
+        const height = parseInt(params.get("height"));
+
+        document.getElementById("userName").textContent = name;
+
+        let mealPlan = "";
+
+        if (age >= 18 && age <= 30) {
+            mealPlan += `<p><strong>Breakfast:</strong> Oatmeal with berries and almond milk<br>
+                          <strong>Lunch:</strong> Grilled chicken sandwich with a side salad<br>
+                          <strong>Snack:</strong> Mixed nuts and a protein bar<br>
+                          <strong>Dinner:</strong> Quinoa with vegetables and baked salmon</p>`;
+        } else if (age > 30 && age <= 50) {
+            mealPlan += `<p><strong>Breakfast:</strong> Avocado toast with eggs<br>
+                          <strong>Lunch:</strong> Brown rice with steamed veggies and tofu<br>
+                          <strong>Snack:</strong> Apple slices with peanut butter<br>
+                          <strong>Dinner:</strong> Grilled turkey with roasted sweet potatoes</p>`;
+        } else {
+            mealPlan += `<p><strong>Breakfast:</strong> Smoothie with spinach, banana, and protein powder<br>
+                          <strong>Lunch:</strong> Lentil soup with whole grain bread<br>
+                          <strong>Snack:</strong> Greek yogurt with berries<br>
+                          <strong>Dinner:</strong> Grilled fish with quinoa and green beans</p>`;
+        }
+
+        document.getElementById("mealContent").innerHTML = mealPlan;
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Track</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(135deg, #e3f2fd, #ffffff);
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: linear-gradient(to right, #00796b, #004d40);
+            color: white;
+            padding: 1.8rem;
+            font-size: 2.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        nav {
+            background-color: #004d40;
+            padding: 10px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #b2dfdb;
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .section-container {
+            background: white;
+            padding: 30px;
+            margin: 30px auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .section-container:hover {
+            transform: scale(1.01);
+        }
+
+        .service-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .service-box {
+            flex: 1 1 250px;
+            max-width: 300px;
+            background-color: #f8f8f8;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: scale(1.03);
+        }
+
+        .service-box img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .service-box button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #00796b;
+            color: white;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .service-box button:hover {
+            background-color: #004d40;
+        }
+
+        .reviews-columns {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .review-box {
+            background-color: #f0f8f6;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        input, select, button {
+            width: 85%;
+            margin: 12px auto;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            display: block;
+        }
+
+        button {
+            background: #00796b;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #004d40;
+            transform: scale(1.02);
+        }
+
+        .intro-image {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #004d40;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            padding: 0 10px;
+        }
+
+        footer {
+            background-color: #004d40;
+            color: white;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .contact-form input {
+            width: 60%;
+            margin: 10px auto;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .contact-form button {
+            width: 62%;
+            margin-top: 10px;
+            background-color: #00796b;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #004d40;
+        }
+
+        .contact-form h3 {
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #b2dfdb;
+        }
+    </style>
+    <script>
+        function goToFitnessTools() {
+            window.location.href = 'fitness-tools.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        Wellness Track
+    </header>
+    <nav>
+        <a href="#introduction">Home</a>
+        <a href="#services">Services</a>
+        <a href="#public-reviews">Public Review</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section class="section-container" id="introduction">
+            <h2>Welcome to Wellness Track</h2>
+            <img src="images/wellness.jpg" alt="Wellness Lifestyle" class="intro-image">
+            <p>WellnessTrack is your ultimate companion in achieving a healthier lifestyle. Our platform is designed to empower individuals 
+            by providing personalized fitness tracking, nutrition planning, and mental well-being insights. Whether you are looking to monitor 
+            your workouts, improve your diet, or enhance your sleep quality, we’ve got the right tools for you. Stay motivated, stay healthy, and 
+            take charge of your wellness journey today!</p>
+        </section>
+
+        <section class="section-container" id="services">
+            <h2>Our Services</h2>
+            <div class="service-columns">
+                <div class="service-box">
+                    <img src="images/fitness.jpg" alt="Fitness Tracking">
+                    <h3>Fitness Tracking</h3>
+                    <p>Track your daily workouts and physical activities to stay in shape and reach your fitness goals.</p>
+                    <button onclick="window.location.href='fitness-tools.html'">Learn More</button>
+                </div>
+                <div class="service-box">
+                    <img src="images/nutrition.jpg" alt="Nutrition Planning">
+                    <h3>Nutrition Planning</h3>
+                    <p>Get meal plans and nutritional guidance tailored to your body needs and lifestyle preferences.</p>
+                    <button onclick="window.location.href='details.html'">Explore</button>
+                </div>
+                <div class="service-box">
+                    <img src="images/mental.jpg" alt="Mental Wellness">
+                    <h3>Mental Wellness</h3>
+                    <p>Improve your mental health with tools for stress relief, mindfulness, and meditation practices.</p>
+                    <button onclick="window.location.href='mental.html'">Discover</button>
+                </div>
+                <div class="service-box">
+                    <img src="images/sleep.jpg" alt="Sleep Tracking">
+                    <h3>Sleep Tracking</h3>
+                    <p>Monitor your sleep patterns and improve sleep quality with personalized suggestions for better rest.</p>
+                    <button onclick="window.location.href='sleeptrack.html'">Track Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container" id="public-reviews">
+            <h2>Public Reviews</h2>
+            <div class="reviews-columns">
+                <div class="review-box">
+                    <p>"WellnessTrack has transformed my daily habits. Highly recommended!"<br><strong>– Alex J.</strong></p>
+                </div>
+                <div class="review-box">
+                    <p>"The meal plans and mindfulness tools are spot on! I feel better every day."<br><strong>– Sara T.</strong></p>
+                </div>
+                <div class="review-box">
+                    <p>"Love the personalized dashboard and clear guidance on nutrition."<br><strong>– Ravi K.</strong></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="contact-form">
+            <h3>Contact Us</h3>
+            <input type="text" placeholder="Your Name">
+            <input type="tel" placeholder="Phone Number">
+            <input type="email" placeholder="Email Address">
+            <button type="submit">Submit</button>
+        </div>
+        <div class="social-icons">
+            <a href="mailto:info@wellnesstrack.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/wellnesstrack" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/wellnesstrack" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
